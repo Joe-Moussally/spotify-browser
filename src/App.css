@@ -1,0 +1,13 @@
+/* Shadow Effect */
+.shadowBox {
+  border-radius: 29px;
+  background: #f2f2f2;
+  box-shadow: 8px 8px 19px #d7d7d7, -8px -8px 19px #ffffff;
+}
+
+/* Pressed Shadow Effect */
+.innerShadowBox {
+  background: #f2f2f2;
+  box-shadow: inset 6px 6px 12px #d7d7d7, inset -6px -6px 12px #ffffff;
+  transform: scale(0.97);
+}

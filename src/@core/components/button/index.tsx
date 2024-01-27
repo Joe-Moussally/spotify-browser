@@ -8,7 +8,7 @@ import { ButtonProps } from "./ButtonProps"
 import buttonStyles from "./buttonStyles.module.css"
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ disabled, loading, ...rest }, ref) => {
+  ({ disabled, loading, startIcon, endIcon, ...rest }, ref) => {
     // ** States
     const [isPressed, setIsPressed] = useState(false)
 
@@ -20,13 +20,17 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       <button
         ref={ref}
         {...rest}
-        className={`${buttonStyles.button} ${
-          isPressed ? buttonStyles.pressed : ""
+        className={`${buttonStyles.button} shadowBox ${
+          isPressed ? "innerShadowBox" : ""
         } ${rest.className}`}
         disabled={disabled || loading}
         onMouseDown={handleMouseDown}
         onMouseUp={handleMouseUp}
-      />
+      >
+        {startIcon}
+        {rest.children}
+        {endIcon}
+      </button>
     )
   }
 )
