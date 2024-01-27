@@ -1,4 +1,3 @@
-import React from "react"
 import Button from "../../@core/components/button"
 import { FaBeer } from "react-icons/fa"
 
