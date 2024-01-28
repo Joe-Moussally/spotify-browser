@@ -2,11 +2,16 @@
 import axios from "axios"
 
 // ** API Constants
+const apiBaseURL = "https://api.spotify.com/v1"
 const accountsBaseURL = "https://accounts.spotify.com"
-const apiBaseURL = "https://api.spotify.com"
-const token = "8284e4d665f94b04975eee1cefc6674e"
 
+// ** Account API
 export const SPOTIFY_ACCOUNTS_API = axios.create({
   baseURL: accountsBaseURL
-  // headers: { Authorization: `Bearer ${token}` }
+})
+
+// ** General API
+export const SPOTIFY_API = axios.create({
+  baseURL: apiBaseURL,
+  headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
 })

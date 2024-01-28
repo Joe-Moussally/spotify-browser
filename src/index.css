@@ -14,5 +14,15 @@ body {
 }
 
 :root {
+  /* SPOTIFY PALETTE */
   --spotify-primary: #1ed760;
+
+  /* MAIN THEME PALLETE */
+  --text-opacity: #00000087;
+
+  --border-radius: 25px;
+}
+
+input:focus {
+  outline: none;
 }
