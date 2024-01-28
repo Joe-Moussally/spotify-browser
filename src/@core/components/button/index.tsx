@@ -26,7 +26,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         className={`${buttonStyles.button} shadowBox ${
           isPressed && !loading ? "innerShadowBox" : ""
         } ${rest.className ?? ""} ${loading ? buttonStyles.loading : ""}`}
-        disabled={disabled}
+        disabled={disabled || loading}
         onMouseDown={handleMouseDown}
         onMouseUp={handleMouseUp}
       >
