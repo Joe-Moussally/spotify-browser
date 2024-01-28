@@ -4,6 +4,9 @@ import { forwardRef, useState } from "react"
 // ** Props Imports
 import { ButtonProps } from "./ButtonProps"
 
+// ** Icons Imports
+import { LuLoader } from "react-icons/lu"
+
 // ** Styles Imports
 import buttonStyles from "./buttonStyles.module.css"
 
@@ -21,15 +24,16 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
         {...rest}
         className={`${buttonStyles.button} shadowBox ${
-          isPressed ? "innerShadowBox" : ""
-        } ${rest.className ?? ""}`}
-        disabled={disabled || loading}
+          isPressed && !loading ? "innerShadowBox" : ""
+        } ${rest.className ?? ""} ${loading ? buttonStyles.loading : ""}`}
+        disabled={disabled}
         onMouseDown={handleMouseDown}
         onMouseUp={handleMouseUp}
       >
         {startIcon}
         {rest.children}
         {endIcon}
+        {loading && <LuLoader className={buttonStyles.loader} />}
       </button>
     )
   }

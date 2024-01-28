@@ -1,6 +1,6 @@
 .button {
   border: none;
-  padding: 13px 33px;
+  padding: 13px 32px;
   opacity: 0.65;
   font-weight: 700;
 
@@ -8,4 +8,24 @@
   align-items: center;
   justify-content: center;
   gap: 10px;
+}
+
+.loading {
+  opacity: 0.5;
+}
+
+.loader {
+  position: absolute;
+  right: 10px;
+  animation: loader 3s linear infinite;
+}
+
+@keyframes loader {
+  from {
+    transform: rotate(0);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
 }
