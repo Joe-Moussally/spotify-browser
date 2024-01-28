@@ -6,6 +6,26 @@
   width: fit-content;
   padding: 5px 12px;
   font-size: 14px;
-  background-color: var(--text-opacity);
   color: white;
+  opacity: 0.85;
+  font-weight: 600;
+
+  /* LINEAR BACKGROUND */
+  background: rgb(40, 219, 151);
+  background: -moz-linear-gradient(
+    51deg,
+    rgba(40, 219, 151, 1) 0%,
+    rgba(46, 161, 191, 1) 100%
+  );
+  background: -webkit-linear-gradient(
+    51deg,
+    rgba(40, 219, 151, 1) 0%,
+    rgba(46, 161, 191, 1) 100%
+  );
+  background: linear-gradient(
+    51deg,
+    rgba(40, 219, 151, 1) 0%,
+    rgba(46, 161, 191, 1) 100%
+  );
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#28db97",endColorstr="#2ea1bf",GradientType=1);
 }

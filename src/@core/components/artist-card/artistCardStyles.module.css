@@ -1,14 +1,23 @@
 .card {
+  --footer-height: 60px;
+
   width: 277px;
   padding: 25px;
+  position: relative;
+  overflow: hidden;
+  padding-bottom: calc(var(--footer-height) + 25px);
 }
 
 .header {
   display: flex;
-  /* flex-direction: column; */
+  flex-direction: row;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 25px;
+}
+.headerLeft {
+  display: flex;
+  flex-direction: column;
 }
 
 .name {
@@ -32,7 +41,8 @@
 
 .followers {
   color: var(--text-opacity);
-  font-size: 14px;
+  font-size: 13px;
+  margin-left: 6px;
 }
 
 .genresContainer {
@@ -41,4 +51,30 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: flex-start;
+}
+
+.footerContainer {
+  height: var(--footer-height);
+  /* border: 2px red solid; */
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  overflow: hidden;
+}
+
+.footerButton {
+  border-radius: 0;
+  flex: 1;
+  margin: 0;
+  height: 100%;
+  transition: all ease 0.3s;
+  font-weight: 500;
+}
+.footerButton:hover {
+  filter: opacity(0.7);
 }

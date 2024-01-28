@@ -11,7 +11,20 @@ import { LuLoader } from "react-icons/lu"
 import buttonStyles from "./buttonStyles.module.css"
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ disabled, loading, startIcon, endIcon, ...rest }, ref) => {
+  (
+    {
+      variant = "neu",
+      size = "md",
+      disabled,
+      loading,
+      startIcon,
+      endIcon,
+      backgroundColor,
+      iconButton,
+      ...rest
+    },
+    ref
+  ) => {
     // ** States
     const [isPressed, setIsPressed] = useState(false)
 
@@ -23,9 +36,15 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       <button
         ref={ref}
         {...rest}
-        className={`${buttonStyles.button} shadowBox ${
-          isPressed && !loading ? "innerShadowBox" : ""
+        className={`${buttonStyles.button} ${variant === "neu" && "shadowBox"}
+        ${size === "sm" && buttonStyles.small}
+        ${iconButton && buttonStyles.iconButton}
+        ${variant === "neu" && isPressed && !loading ? "innerShadowBox" : ""} ${
+          variant === "flat" && buttonStyles.flat
         } ${rest.className ?? ""} ${loading ? buttonStyles.loading : ""}`}
+        style={{
+          backgroundColor
+        }}
         disabled={disabled || loading}
         onMouseDown={handleMouseDown}
         onMouseUp={handleMouseUp}
