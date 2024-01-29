@@ -6,27 +6,9 @@ import inputStyles from "./inputStyles.module.css"
 
 const Input = ({ icon, ...rest }: inputProps) => {
   return (
-    <div
-      className="innerShadowBox"
-      style={{
-        width: "fit-content",
-        padding: "11px 27px 10px 27px",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        gap: "5px"
-      }}
-    >
+    <div className={`innerShadowBox ${inputStyles.container}`}>
       {icon}
-      <input
-        style={{
-          border: "none",
-          background: "none",
-
-          opacity: "0.7"
-        }}
-        {...rest}
-      />
+      <input {...rest} />
     </div>
   )
 }
