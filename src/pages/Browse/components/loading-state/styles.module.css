@@ -1,0 +1,27 @@
+.container {
+  color: var(--text-opacity);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: fit-content;
+  margin: 0 auto;
+  padding: 45px 90px;
+  border-radius: 90px;
+
+  animation: loader 2s linear infinite;
+}
+.container * {
+  font-size: 90px;
+  font-weight: 500;
+}
+
+@keyframes loader {
+  from {
+    transform: rotate(0);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}

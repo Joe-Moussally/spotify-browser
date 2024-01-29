@@ -1,6 +1,13 @@
 // ** React Imports
 import { useEffect, useState } from "react"
 
+// ** Redux Imports
+import { RootState } from "../../redux/store"
+import { useDispatch, useSelector } from "react-redux"
+
+// ** Actions Imports
+import { addArtists } from "../../redux/slices/artistsSlice"
+
 // ** API Imports
 import { _getItems } from "../../@core/APIs/getItems"
 
@@ -11,11 +18,18 @@ import { debounce } from "../../@core/utils/debounce"
 import { FaSearch } from "react-icons/fa"
 
 // **Components Imports
-import EmptyState from "./components/empty-state"
-import ArtistCard from "../../@core/components/artist-card"
 import Input from "../../@core/components/input"
+import EmptyState from "./components/empty-state"
+import LoadingState from "./components/loading-state"
+import ArtistCard from "../../@core/components/artist-card"
 
 function Browse() {
+  // ** Hooks
+  const dispatch = useDispatch()
+
+  // ** Redux States
+  const artists = useSelector((state: RootState) => state.artists)
+
   // ** States
   const [paginationModel, setPaginationModel] = useState({
     page: 0,
@@ -39,20 +53,24 @@ function Browse() {
 
     // fetch data
     _getItems(
-      params,
+      {
+        q: query,
+        offset: artists.page * artists.limit,
+        type: "artist",
+        limit: artists.limit
+      },
       (data) => {
-        console.log(data)
+        dispatch(addArtists(data))
         setLoading(false) // Stop loading
       },
       (error) => {
-        console.log(error)
         setLoading(false) // Stop loading
       }
     )
   }, 700)
 
   // Function that executes at the end of the scroll reach
-  const fetchMoreData = () => {
+  const handleScrollEnd = () => {
     // Calculate the distance between the bottom of the viewport and the bottom of the page
     const distanceToBottom =
       document.documentElement.scrollHeight -
@@ -76,10 +94,10 @@ function Browse() {
   // Add an event listener to the window to call more
   // artists at the end of the scroll
   useEffect(() => {
-    window.addEventListener("scroll", () => fetchMoreData())
+    window.addEventListener("scroll", () => handleScrollEnd())
 
     // Remove event listener on page demount
-    return window.removeEventListener("scroll", fetchMoreData)
+    return window.removeEventListener("scroll", handleScrollEnd)
   }, [])
 
   return (
@@ -94,12 +112,13 @@ function Browse() {
         }}
       >
         <Input
-          icon={<FaSearch style={{ opacity: "0.4" }} />}
           placeholder="Search Artists"
+          onChange={handleSearch}
+          icon={<FaSearch style={{ opacity: "0.4" }} />}
         />
       </div>
 
-      <div style={{ margin: "100px" }}>
+      <div>
         {/* <ArtistCard
           artistId="1"
           name="Coldplay"
@@ -109,7 +128,8 @@ function Browse() {
           externalURL="https://open.spotify.com/artist/4gzpq5DPGxSnKTe4SA8HAU"
         /> */}
 
-        <EmptyState />
+        {/* <EmptyState /> */}
+        <LoadingState />
       </div>
     </div>
   )

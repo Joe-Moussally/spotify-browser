@@ -1,22 +1,29 @@
 // ** Redux Imports
 import { createSlice } from "@reduxjs/toolkit"
 import type { PayloadAction } from "@reduxjs/toolkit"
-import ArtistInterface from "../../../@core/interfaces/artistInterface"
+
+// ** Interfaces Imports
+import {
+  ArtistInterface,
+  getArtistsDataInterface
+} from "../../../@core/interfaces/artists"
 
 // ** Interfaces
 export interface artistsState {
   page: number
   limit: number
-  canFetchMore: boolean
-  data: ArtistInterface[]
+  total: number
+  next?: string
+  items: ArtistInterface[]
 }
 
 // ** Initial States
 const initialState: artistsState = {
   page: 0,
   limit: 8,
-  canFetchMore: true,
-  data: []
+  total: 0,
+  next: undefined,
+  items: []
 }
 
 // ** Slice
@@ -25,10 +32,21 @@ export const artistsSlice = createSlice({
   initialState,
   reducers: {
     // Add new batch of artists the data array
-    addArtists: (state, action: PayloadAction<ArtistInterface[]>) => {},
+    addArtists: (state, action: PayloadAction<getArtistsDataInterface>) => {
+      // ** Payload Data
+      const payloadData = action.payload.artists
+
+      // ** Update state
+      state.total = payloadData.total
+      state.limit = payloadData.limit
+      state.page = payloadData.offset / payloadData.limit
+      state.items = [...state.items, ...payloadData.items]
+    },
 
     // Increment the page count
-    incrementPageCount: (state) => {},
+    incrementPageCount: (state) => {
+      state.page += 1
+    },
 
     // Clear/Reset state
     clearArtists: (state) => {} // Fixed typo here
