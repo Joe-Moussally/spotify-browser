@@ -13,7 +13,7 @@ export interface artistsState {
   page: number
   limit: number
   total: number
-  next?: string
+  next: string
   items: ArtistInterface[]
 }
 
@@ -22,7 +22,7 @@ const initialState: artistsState = {
   page: 0,
   limit: 8,
   total: 0,
-  next: undefined,
+  next: "",
   items: []
 }
 
@@ -35,11 +35,13 @@ export const artistsSlice = createSlice({
     addArtists: (state, action: PayloadAction<getArtistsDataInterface>) => {
       // ** Payload Data
       const payloadData = action.payload.artists
+      console.log(payloadData.next)
 
       // ** Update state
       state.total = payloadData.total
       state.limit = payloadData.limit
       state.page = payloadData.offset / payloadData.limit
+      state.next = payloadData.next
       state.items = [...state.items, ...payloadData.items]
     },
 
@@ -49,11 +51,9 @@ export const artistsSlice = createSlice({
     },
 
     // Clear/Reset state
-    clearArtists: (state) => {} // Fixed typo here
-
-    // incrementByAmount: (state, action: PayloadAction<number>) => {
-    //   state.value += action.payload
-    // }
+    clearArtists: (state) => {
+      state = initialState
+    }
   }
 })
 

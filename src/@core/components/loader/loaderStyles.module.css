@@ -1,0 +1,14 @@
+.loader {
+  color: var(--text-opacity);
+  animation: loader 2s linear infinite;
+}
+
+@keyframes loader {
+  from {
+    transform: rotate(0);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}

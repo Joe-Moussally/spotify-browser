@@ -2,7 +2,7 @@ export interface getArtistsDataInterface {
   artists: {
     items: ArtistInterface[]
     limit: number
-    next?: string
+    next: string
     offset: number
     previous?: string
     total: number
