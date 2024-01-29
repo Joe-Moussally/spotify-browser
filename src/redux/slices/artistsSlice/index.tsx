@@ -31,7 +31,7 @@ export const artistsSlice = createSlice({
     incrementPageCount: (state) => {},
 
     // Clear/Reset state
-    cleartArtists: (state) => {}
+    clearArtists: (state) => {} // Fixed typo here
 
     // incrementByAmount: (state, action: PayloadAction<number>) => {
     //   state.value += action.payload
@@ -39,7 +39,7 @@ export const artistsSlice = createSlice({
   }
 })
 
-export const { addArtists, incrementPageCount, cleartArtists } =
+export const { addArtists, incrementPageCount, clearArtists } =
   artistsSlice.actions
 
 export default artistsSlice.reducer
