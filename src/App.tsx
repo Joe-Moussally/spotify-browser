@@ -11,16 +11,22 @@ import AxiosInterceptor from "./@core/components/axios-interceptor"
 import Browse from "./pages/Browse"
 import Login from "./pages/Login"
 
+// ** Redux Imports
+import { store } from "./redux/store"
+import { Provider } from "react-redux"
+
 function App() {
   return (
-    <BrowserRouter>
-      <AxiosInterceptor>
-        <Routes>
-          <Route path="/" Component={Browse} />
-          <Route path="/login" Component={Login} />
-        </Routes>
-      </AxiosInterceptor>
-    </BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>
+        <AxiosInterceptor>
+          <Routes>
+            <Route path="/" Component={Browse} />
+            <Route path="/login" Component={Login} />
+          </Routes>
+        </AxiosInterceptor>
+      </BrowserRouter>
+    </Provider>
   )
 }
 
