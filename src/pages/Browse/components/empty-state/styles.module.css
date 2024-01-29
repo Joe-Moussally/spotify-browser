@@ -1,0 +1,15 @@
+.container {
+  color: var(--text-opacity);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: fit-content;
+  margin: 0 auto;
+  padding: 45px 90px;
+  border-radius: 90px;
+}
+.container * {
+  font-size: 50px;
+  font-weight: 500;
+}

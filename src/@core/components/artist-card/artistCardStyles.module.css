@@ -1,7 +1,7 @@
 .card {
-  --footer-height: 60px;
+  --footer-height: 50px;
 
-  width: 277px;
+  width: 276px;
   padding: 25px;
   position: relative;
   overflow: hidden;
@@ -68,12 +68,14 @@
 }
 
 .footerButton {
-  border-radius: 0;
-  flex: 1;
-  margin: 0;
-  height: 100%;
-  transition: all ease 0.3s;
-  font-weight: 500;
+  border-radius: 0 !important;
+  flex: 1 !important;
+  margin: 0 !important;
+  height: 100% !important;
+  transition: all ease 0.3s !important;
+  font-weight: 500 !important;
+  width: 135px !important;
+  padding: 0 !important;
 }
 .footerButton:hover {
   filter: opacity(0.7);

@@ -13,12 +13,18 @@ body {
   background-color: #f2f2f2;
 }
 
+a {
+  color: unset;
+  text-decoration: unset;
+}
+
 :root {
   /* SPOTIFY PALETTE */
   --spotify-primary: #1ed760;
 
   /* MAIN THEME PALLETE */
   --text-opacity: #00000087;
+  --favorite-color: #b58700;
 
   --border-radius: 25px;
 }

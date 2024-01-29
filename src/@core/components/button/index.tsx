@@ -41,7 +41,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         ${iconButton && buttonStyles.iconButton}
         ${variant === "neu" && isPressed && !loading ? "innerShadowBox" : ""} ${
           variant === "flat" && buttonStyles.flat
-        } ${rest.className ?? ""} ${loading ? buttonStyles.loading : ""}`}
+        } ${loading ? buttonStyles.loading : ""} ${rest.className ?? ""}`}
         style={{
           backgroundColor
         }}

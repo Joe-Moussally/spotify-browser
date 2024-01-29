@@ -1,30 +1,25 @@
-// ** React Imports
-import { useEffect } from "react"
-
 // ** React Router Imports
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 
 // ** Global Styles Imports
 import "./App.css"
 
-// ** Utils Imports
-import checkToken from "./@core/utils/checkToken"
+// ** Component Imports
+import AxiosInterceptor from "./@core/components/axios-interceptor"
 
 // ** Pages Imports
-import Login from "./pages/Login"
 import Browse from "./pages/Browse"
+import Login from "./pages/Login"
 
 function App() {
-  useEffect(() => {
-    checkToken() // Check for token on app load
-  }, [])
-
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" Component={Browse} />
-        <Route path="/login" Component={Login} />
-      </Routes>
+      <AxiosInterceptor>
+        <Routes>
+          <Route path="/" Component={Browse} />
+          <Route path="/login" Component={Login} />
+        </Routes>
+      </AxiosInterceptor>
     </BrowserRouter>
   )
 }

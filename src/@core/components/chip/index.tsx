@@ -1,5 +1,5 @@
 // ** Props Imports
-import { ChipProps } from "./chipProp"
+import { ChipProps } from "./chipProps"
 
 // ** Styles Imports
 import chipStyles from "./chipStyles.module.css"

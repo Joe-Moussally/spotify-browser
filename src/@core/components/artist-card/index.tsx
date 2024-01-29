@@ -1,19 +1,12 @@
-// ** React Imports
-import { useState } from "react"
+// ** React Router vImports
+import { Link } from "react-router-dom"
 
 // ** Props Imports
 import { ArtistCardProps } from "./artistCardProp"
 
 // ** Icons Imports
 import { CiImageOff } from "react-icons/ci"
-import { HiOutlineEye } from "react-icons/hi"
-import {
-  FaEdgeLegacy,
-  FaEye,
-  FaRegStar,
-  FaSpotify,
-  FaStar
-} from "react-icons/fa"
+import { FaEye, FaRegStar, FaSpotify, FaStar } from "react-icons/fa"
 
 // ** Styles Imports
 import artistCardStyles from "./artistCardStyles.module.css"
@@ -34,6 +27,11 @@ const ArtistCard = ({
   genres,
   ...rest
 }: ArtistCardProps) => {
+  // ** Handlers
+  const handleSpotifyRedirect = () => {
+    window.open(externalURL, "_blank") // Open external URL in a new tab
+  }
+
   return (
     <div
       id={artistId}
@@ -50,7 +48,10 @@ const ArtistCard = ({
           </span>
         </div>
 
-        <Button iconButton startIcon={<FaRegStar />}></Button>
+        <Button
+          iconButton
+          startIcon={<FaRegStar color="var(--favorite-color)" />}
+        ></Button>
       </div>
 
       {/* Artist Image */}
@@ -71,16 +72,19 @@ const ArtistCard = ({
 
       {/* Footer */}
       <div className={artistCardStyles.footerContainer}>
+        <Link to={`/artists/${artistId}`} style={{ height: "100%" }}>
+          <Button
+            variant="flat"
+            backgroundColor="var(--text-opacity)"
+            className={artistCardStyles.footerButton}
+            endIcon={<FaEye color="white" size={22} />}
+          >
+            View
+          </Button>
+        </Link>
         <Button
           variant="flat"
-          backgroundColor="var(--text-opacity)"
-          className={artistCardStyles.footerButton}
-          endIcon={<FaEye color="white" size={22} />}
-        >
-          View
-        </Button>
-        <Button
-          variant="flat"
+          onClick={handleSpotifyRedirect}
           backgroundColor="var(--spotify-primary)"
           className={artistCardStyles.footerButton}
           endIcon={<FaSpotify color="white" size={22} />}

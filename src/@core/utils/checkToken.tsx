@@ -1,10 +1,9 @@
-const checkToken = () => {
-  const token = localStorage.getItem("token") // Get token from localStorage
+// ** API Imports
+import { _getProfile } from "../APIs/getProfile"
 
-  // If the token doesn't exist -> redirect to login page
-  if (!token) {
-    window.location.replace("/login")
-  }
+const checkToken = () => {
+  // ** Fetch profile and validate token
+  _getProfile()
 }
 
 export default checkToken
