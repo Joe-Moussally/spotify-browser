@@ -6,7 +6,7 @@ import toast from "react-hot-toast"
 
 const handleUnauthorized = (navigate: NavigateFunction) => {
   // Show toast error
-  toast.error("Please Log In To Proceed")
+  toast.error("Please Log In To Proceed", { position: "top-right" })
 
   // Navigate to login
   navigate("/login")

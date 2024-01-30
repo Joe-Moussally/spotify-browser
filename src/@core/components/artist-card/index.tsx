@@ -1,3 +1,6 @@
+// ** React Imports
+import { useEffect, useState } from "react"
+
 // ** React Router vImports
 import { Link } from "react-router-dom"
 
@@ -17,6 +20,8 @@ import { formatFollowers } from "../../utils/formatFollowers"
 // ** Component Imports
 import Chip from "../chip"
 import Button from "../button"
+import toggleFavoriteArtist from "../../utils/toggleFavoriteArtist"
+import checkArtistIsFavorite from "../../utils/checkArtistIsFavorite"
 
 const ArtistCard = ({
   artistId,
@@ -27,10 +32,21 @@ const ArtistCard = ({
   genres,
   ...rest
 }: ArtistCardProps) => {
+  // ** States
+  const [isFavorite, setIsFavorite] = useState<boolean>(false)
+
   // ** Handlers
   const handleSpotifyRedirect = () => {
     window.open(externalURL, "_blank") // Open external URL in a new tab
   }
+
+  const handleFavoriteClick = () => {
+    setIsFavorite(toggleFavoriteArtist(artistId))
+  }
+
+  useEffect(() => {
+    setIsFavorite(checkArtistIsFavorite(artistId))
+  }, [])
 
   return (
     <div
@@ -50,8 +66,15 @@ const ArtistCard = ({
 
         <Button
           iconButton
-          startIcon={<FaRegStar color="var(--favorite-color)" />}
-        ></Button>
+          startIcon={
+            isFavorite ? (
+              <FaStar color="var(--favorite-color)" />
+            ) : (
+              <FaRegStar color="var(--favorite-color)" />
+            )
+          }
+          onClick={handleFavoriteClick}
+        />
       </div>
 
       {/* Artist Image */}
@@ -72,6 +95,7 @@ const ArtistCard = ({
 
       {/* Footer */}
       <div className={artistCardStyles.footerContainer}>
+        {/* View Artist */}
         <Link to={`/artists/${artistId}`} style={{ height: "100%" }}>
           <Button
             variant="flat"
@@ -82,6 +106,8 @@ const ArtistCard = ({
             View
           </Button>
         </Link>
+
+        {/* View On Spotify */}
         <Button
           variant="flat"
           onClick={handleSpotifyRedirect}
