@@ -1,0 +1,25 @@
+.card {
+  padding: 15px;
+  display: flex;
+  gap: 20px;
+}
+.card h3 {
+  font-size: 30px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.albumImg {
+  width: 110px;
+  height: 110px;
+  border-radius: var(--border-radius);
+}
+.infoContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10px;
+}

@@ -8,8 +8,9 @@ import "./App.css"
 import AxiosInterceptor from "./@core/components/axios-interceptor"
 
 // ** Pages Imports
-import Browse from "./pages/Browse"
 import Login from "./pages/Login"
+import Browse from "./pages/Browse"
+import ViewArtist from "./pages/ViewArtist"
 
 // ** Toast Imports
 import { Toaster } from "react-hot-toast"
@@ -28,7 +29,7 @@ function App() {
           <Routes>
             <Route path="/" Component={Browse} />
             <Route path="/login" Component={Login} />
-            <Route path="/artists/:artistId" Component={Login} />
+            <Route path="/artists/:artistId" Component={ViewArtist} />
           </Routes>
         </AxiosInterceptor>
       </BrowserRouter>

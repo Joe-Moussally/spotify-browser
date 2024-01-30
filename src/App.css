@@ -12,3 +12,9 @@
   box-shadow: inset 6px 6px 12px #d7d7d7, inset -6px -6px 12px #ffffff;
   transform: scale(0.97);
 }
+
+.pageContainer {
+  max-width: 1400px;
+  margin: 70px auto;
+  padding: 0 30px;
+}

@@ -11,6 +11,6 @@ const Loader = ({ size = "25px", ...rest }: LoaderProps) => {
   return <FiLoader className={loaderStyles.loader} size={size} />
 }
 
-Loader.displayName = "ArtistCard"
+Loader.displayName = "Loader"
 
 export default Loader

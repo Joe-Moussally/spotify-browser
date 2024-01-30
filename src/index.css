@@ -9,10 +9,6 @@
   font-size: 16.75px;
 }
 
-body {
-  background-color: #f2f2f2;
-}
-
 a {
   color: unset;
   text-decoration: unset;
@@ -31,4 +27,9 @@ a {
 
 input:focus {
   outline: none;
+}
+
+body {
+  background-color: #f2f2f2;
+  color: var(--text-opacity);
 }

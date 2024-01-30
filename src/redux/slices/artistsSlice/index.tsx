@@ -35,7 +35,6 @@ export const artistsSlice = createSlice({
     addArtists: (state, action: PayloadAction<getArtistsDataInterface>) => {
       // ** Payload Data
       const payloadData = action.payload.artists
-      console.log(payloadData.next)
 
       // ** Update state
       state.total = payloadData.total

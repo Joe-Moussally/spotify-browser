@@ -12,6 +12,6 @@ const Chip = ({ label, ...rest }: ChipProps) => {
   )
 }
 
-Chip.displayName = "ArtistCard"
+Chip.displayName = "Chip"
 
 export default Chip
