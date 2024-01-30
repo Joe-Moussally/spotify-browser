@@ -23,7 +23,7 @@ import { debounce } from "../../@core/utils/debounce"
 import { capitalize } from "../../@core/utils/capitalize"
 
 // ** Icons Imports
-import { FaSearch } from "react-icons/fa"
+import { FaPlus, FaSearch } from "react-icons/fa"
 
 // **Components Imports
 import Input from "../../@core/components/input"
@@ -32,6 +32,7 @@ import InitialState from "./components/initial-state"
 import LoadingState from "./components/loading-state"
 import ArtistCard from "../../@core/components/artist-card"
 import Loader from "../../@core/components/loader"
+import Button from "../../@core/components/button"
 
 function Browse() {
   // ** Hooks
@@ -47,12 +48,12 @@ function Browse() {
 
   // ** Handlers
   const handleSearch = debounce((e) => {
+    dispatch(clearArtists())
     const query = e.target.value // Input text value
     setSearchValue(query)
 
     // If the search input is empty -> stop the call and reset called data
     if (!query) {
-      dispatch(clearArtists())
       setLoading(false)
       return
     }
@@ -77,6 +78,10 @@ function Browse() {
     )
   }, 700)
 
+  const handleLoadMoreClick = () => {
+    dispatch(incrementPageCount())
+  }
+
   // Fetch more data
   const fetchMoreData = () => {
     if (!artists.next || fetchMoreLoading) {
@@ -94,38 +99,14 @@ function Browse() {
         limit: artists.limit
       },
       (data) => {
+        setFetchMoreLoading(false)
         dispatch(addArtists(data))
       },
-      (error) => {}
+      (error) => {
+        setFetchMoreLoading(false)
+      }
     )
   }
-
-  // Function that executes at the end of the scroll reach
-  const handleScrollEnd = () => {
-    // Calculate the distance between the bottom of the viewport and the bottom of the page
-    const distanceToBottom =
-      document.documentElement.scrollHeight -
-      (window.innerHeight + window.scrollY)
-
-    // If the end is reached and the API is not being called
-    if (distanceToBottom < 10) {
-      if (!fetchMoreLoading) {
-        dispatch(incrementPageCount())
-      }
-      return
-    }
-  }
-
-  /**
-   * Add an event listener to the window to call more
-   * artists at the end of the scroll
-   */
-  useEffect(() => {
-    window.addEventListener("scroll", () => handleScrollEnd())
-
-    // Remove event listener on page demount
-    return window.removeEventListener("scroll", handleScrollEnd)
-  }, [])
 
   /**
    * On page incrementation, fetch more data
@@ -168,10 +149,16 @@ function Browse() {
         )}
       </div>
 
-      {/* Fetch More Loader */}
-      {fetchMoreLoading && (
+      {/* Fetch More Button */}
+      {artists.next && (
         <div className={styles.loaderContainer}>
-          <Loader size={100} />
+          <Button
+            endIcon={<FaPlus />}
+            onClick={handleLoadMoreClick}
+            loading={fetchMoreLoading}
+          >
+            Load More
+          </Button>
         </div>
       )}
     </div>

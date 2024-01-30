@@ -51,7 +51,11 @@ export const artistsSlice = createSlice({
 
     // Clear/Reset state
     clearArtists: (state) => {
-      state = initialState
+      state.page = 0
+      state.limit = 8
+      state.total = 0
+      state.next = ""
+      state.items = []
     }
   }
 })

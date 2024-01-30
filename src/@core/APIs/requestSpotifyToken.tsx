@@ -12,7 +12,7 @@ export const _requestSpotifyToken = (
     "/api/token",
     {
       grant_type: "client_credentials",
-      // client_id: client_id_env,
+      client_id: client_id_env,
       client_secret: client_secret_env
     },
     {
