@@ -5,12 +5,15 @@ export const _requestSpotifyToken = (
   callback: (data: any) => void,
   callbackErr: (data: any) => void
 ) => {
+  const client_id_env = process.env.REACT_APP_SPOTIFY_CLIENT_ID
+  const client_secret_env = process.env.REACT_APP_SPOTIFY_CLIENT_SECRET
+
   SPOTIFY_ACCOUNTS_API.post(
     "/api/token",
     {
       grant_type: "client_credentials",
-      client_id: "b7c735da46a64a0ab8c4789f307d8d9f",
-      client_secret: "8284e4d665f94b04975eee1cefc6674e"
+      client_id: client_id_env,
+      client_secret: client_secret_env
     },
     {
       headers: {

@@ -35,6 +35,9 @@ export interface getArtistTopTracksInterface {
     name: string
     href: string
     preview_url: string
+    external_urls: {
+      spotify: string
+    }
     album: {
       images: { url: string }[]
       name: string

@@ -19,22 +19,22 @@ import {
 
 // ** Icons Imports
 import { CiImageOff } from "react-icons/ci"
-import { FaRegStar, FaSpotify, FaStar } from "react-icons/fa"
+import { MdLibraryMusic } from "react-icons/md"
 import { IoChevronBackSharp } from "react-icons/io5"
+import { FaRegStar, FaSpotify, FaStar } from "react-icons/fa"
 
 // ** Toast Imports
 import toast from "react-hot-toast"
 
 // ** Utils Imports
+import { capitalize } from "../../@core/utils/capitalize"
+import { formatFollowers } from "../../@core/utils/formatFollowers"
 import toggleFavoriteArtist from "../../@core/utils/toggleFavoriteArtist"
 import checkArtistIsFavorite from "../../@core/utils/checkArtistIsFavorite"
 
 // ** Component Imports
-import Button from "../../@core/components/button"
 import Chip from "../../@core/components/chip"
-import { capitalize } from "../../@core/utils/capitalize"
-import { formatFollowers } from "../../@core/utils/formatFollowers"
-import { MdLibraryMusic } from "react-icons/md"
+import Button from "../../@core/components/button"
 import TrackCard from "../../@core/components/track-card"
 
 function ViewArtist() {
@@ -195,6 +195,16 @@ function ViewArtist() {
             </h2>
 
             <div className={styles.tracksContainer}>
+              {tracksData?.tracks.map((track) => (
+                <TrackCard
+                  id={track.id}
+                  key={track.id}
+                  name={track.name}
+                  previewUrl={track.preview_url}
+                  link={track.external_urls.spotify}
+                  albumImgUrl={track.album.images[0].url}
+                />
+              ))}
               <TrackCard
                 id="s"
                 key="s"
