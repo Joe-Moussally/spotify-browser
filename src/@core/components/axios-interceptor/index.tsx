@@ -8,10 +8,13 @@ import { useNavigate } from "react-router-dom"
 import { AxiosResponse, AxiosError } from "axios"
 
 // ** API Instances Imports
-import { SPOTIFY_API } from "../../utils/API"
+import { SPOTIFY_ACCOUNTS_API, SPOTIFY_API } from "../../utils/API"
 
 // ** Utils Imports
 import handleUnauthorized from "../../utils/handleUnauthorized"
+
+// ** Toast Imports
+import toast from "react-hot-toast"
 
 // ** Axios Interfaces
 interface AxiosInterceptorProps {
@@ -34,8 +37,9 @@ const AxiosInterceptor: React.FC<AxiosInterceptorProps> = ({ children }) => {
       if (error.response && error.response.status === 401) {
         // Redirect to login if unauthorized
         handleUnauthorized(navigate)
+      } else {
+        toast.error("Something went wrong")
       }
-
       // Pass the error
       return Promise.reject(error)
     }
@@ -44,9 +48,15 @@ const AxiosInterceptor: React.FC<AxiosInterceptorProps> = ({ children }) => {
       resInterceptor,
       errInterceptor
     )
+    const accountsInterceptor: number =
+      SPOTIFY_ACCOUNTS_API.interceptors.response.use(
+        resInterceptor,
+        errInterceptor
+      )
 
     return () => {
       SPOTIFY_API.interceptors.response.eject(interceptor)
+      SPOTIFY_ACCOUNTS_API.interceptors.response.eject(accountsInterceptor)
     }
   }, [])
 
