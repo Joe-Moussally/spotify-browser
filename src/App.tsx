@@ -11,6 +11,9 @@ import AxiosInterceptor from "./@core/components/axios-interceptor"
 import Browse from "./pages/Browse"
 import Login from "./pages/Login"
 
+// ** Toast Imports
+import { Toaster } from "react-hot-toast"
+
 // ** Redux Imports
 import { store } from "./redux/store"
 import { Provider } from "react-redux"
@@ -20,9 +23,12 @@ function App() {
     <Provider store={store}>
       <BrowserRouter>
         <AxiosInterceptor>
+          <Toaster />
+
           <Routes>
             <Route path="/" Component={Browse} />
             <Route path="/login" Component={Login} />
+            <Route path="/artists/:artistId" Component={Login} />
           </Routes>
         </AxiosInterceptor>
       </BrowserRouter>
